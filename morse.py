@@ -49,8 +49,25 @@ def load_file(filename: str) -> list[str]:
     infile.close()
     return lines
 
-def convert_english_to_morse(lines: list[str]):
-    pass
+def convert_english_to_morse(lines: list[str]) -> str:
+    converted_texts = ""
+
+    for line in lines:
+        line = line.upper()
+        print(repr(line))
+
+        for char in line:
+            print(repr(char))
+            
+            if char in english_morse_dict:
+                converted_texts += english_morse_dict[char] + " " # Space to seperate morse strings
+            elif char == " " or "\n":
+                converted_texts += char
+            else:
+                print(f"Unrecognized character.")
+
+
+    return converted_texts
 
 def convert_morse_to_english(lines: list[str]):
     pass
@@ -67,8 +84,8 @@ def main():
     print(lines)
 
     if conversion_type == "-m":
-        pass
         converted_lines = convert_english_to_morse(lines)
+        print("Converted Lines: ", converted_lines)
     elif conversion_type == "-t":
         pass
         converted_lines = convert_morse_to_english(lines)
